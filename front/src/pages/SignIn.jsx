@@ -1,5 +1,5 @@
 import React from "react";
-import LoginImage from '../assets/Login.png'; // Caminho para a imagem
+import LoginImage from '../assets/Login.png';
 
 function SignIn() {
     return (
