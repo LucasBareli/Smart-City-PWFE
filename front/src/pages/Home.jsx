@@ -2,7 +2,10 @@ import React from "react";
 import Mange from '../assets/Mange.png';
 import Footer from "../components/Footer";
 import CityFooter from '../assets/CityFooter.png';
-import CityLorem from '../assets/CityLorem.png'
+import CityLorem from '../assets/CityLorem.png';
+import CityLorem2 from '../assets/CityLorem2.png'
+import Carousel from "../components/Carousel";
+import Widgets from "../components/Widgets";
 
 function Home() {
     return (
@@ -50,23 +53,41 @@ function Home() {
 
                 {/* Introduction Section */}
                 <section className="bg-white !ml-15 !mr-15 !mt-20">
-                    <div>
-                        <h2 className="text-[28px] font-bold text-[#77625C] ledger-regular !ml-4">Introduction</h2>
-                        <hr className="border-t border-[#8D8D8D] w-full" />
-                        <h3 className="text-[64px] league-regular text-[#3C096C] font-semibold !mt-10">Lorem Ipsum is simply dummy text of the printing</h3>
-                    </div>
+                    <Widgets    />
                     <div>
                         <h2 className="text-[28px] font-bold text-[#77625C] ledger-regular !ml-4 !mt-20">Advantages</h2>
-                        <hr className="border-t border-[#8D8D8D] w-full" />
+                        <hr className="border-t border-[#000000] w-full" />
                         <h3 className="text-[64px] league-regular text-[#3C096C] font-semibold !mt-10">Lorem Ipsum is simply dummy text of the printing</h3>
                         <p className="text-[24px] league-regular font-thin text-black ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                        <img
-                            src={CityLorem}
-                            alt="City"
-                            className="w-full h-[700px] object-cover rounded-xl"
-                        />
+                        <div className="relative">
+                            <img
+                                src={CityLorem}
+                                alt="City"
+                                className="w-full h-[700px] object-cover rounded-xl"
+                            />
+                            <div className="absolute top-1/2 left-1/2 w-[387px] h-[519px] bg-white -translate-x-1/2 -translate-y-1/2 rounded-xl p-4 flex flex-col items-center">
+                                <img
+                                    src={CityLorem2}
+                                    alt="City"
+                                    className="w-[336px] h-[344px] object-cover rounded-xl !mt-4"
+                                />
+                                <div className="w-full text-left">
+                                    <h4 className="league-regular text-[32px] text-[#3C096C] font-semibold !ml-7">
+                                        Lorem Ipsum
+                                    </h4>
+                                    <p className="league-regular text-[24px] !ml-7 font-thin w-85">
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </section>
+                <h2 className="text-[55px] font-semibold league-regular text-[#3C096C] text-end !m-15">
+                    OUR SENSORS
+                </h2>
+                <Carousel />
             </div>
             <img
                 src={CityFooter}
