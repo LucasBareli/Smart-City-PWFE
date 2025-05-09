@@ -17,7 +17,7 @@ function SignIn() {
                         {/* Campo de E-mail */}
                         <div>
                             <label
-                                className="block text-gray-700 text-sm font-bold mb-2"
+                                className="block text-black league-regular text-[20px] font-thin mb-2"
                                 htmlFor="email"
                             >
                                 E-mail
@@ -25,14 +25,13 @@ function SignIn() {
                             <input
                                 id="email"
                                 type="email"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                placeholder="Enter your e-mail"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C]"
                             />
                         </div>
                         {/* Campo de Senha */}
                         <div>
                             <label
-                                className="block text-gray-700 text-sm font-bold mb-2"
+                                className="block text-black league-regular text-[20px] font-thin mb-2"
                                 htmlFor="password"
                             >
                                 Password
@@ -40,15 +39,14 @@ function SignIn() {
                             <input
                                 id="password"
                                 type="password"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                placeholder="Enter your password"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C]"
                             />
                         </div>
                         {/* Link "Forgot Password" */}
                         <div className="text-right">
                             <a
                                 href="#"
-                                className="text-purple-600 text-sm hover:underline"
+                                className="text-[#3C096C] league-regular text-[16px] text-sm hover:underline"
                             >
                                 Forgot your password?
                             </a>
@@ -56,15 +54,15 @@ function SignIn() {
                         {/* Botão "Sign In" */}
                         <button
                             type="submit"
-                            className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition"
+                            className="w-full bg-[#17CF96] hover:cursor-pointer text-[24px] text-white league-regular font-semibold py-3 rounded-lg transition"
                         >
                             Sign in
                         </button>
                     </form>
                     {/* Link "Sign Up" */}
-                    <p className="mt-6 text-sm text-center text-gray-500">
+                    <p className="mt-6 font-thin text-sm text-center text-black text-[20px] league-regular ">
                         Don’t have an account?{" "}
-                        <a href="#" className="text-purple-600 hover:underline">
+                        <a href="/signup" className="text-[#3C096C] hover:underline league-regular">
                             Sign Up
                         </a>
                     </p>
@@ -78,12 +76,10 @@ function SignIn() {
                         className="w-full h-full object-cover rounded-tr-3xl rounded-br-3xl"
                     />
                 </div>
+                <div className="absolute bottom-40 text-center text-[#3F3F3F] font-thin text-[20px] w-full">
+                    © 2025 Lucas Bareli. All rights reserved
+                </div>
             </div>
-
-            {/* Rodapé */}
-            <footer className="absolute bottom-4 text-gray-500 text-sm text-center w-full">
-                © 2025 Lucas Bareli. All rights reserved
-            </footer>
         </div>
     );
 }
