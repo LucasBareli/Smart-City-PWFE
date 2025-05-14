@@ -6,6 +6,8 @@ import CityLorem from '../assets/CityLorem.png';
 import CityLorem2 from '../assets/CityLorem2.png'
 import Carousel from "../components/Carousel";
 import Widgets from "../components/Widgets";
+import { FaArrowDownLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Home() {
     return (
@@ -20,12 +22,18 @@ function Home() {
                             </h3>
                         </div>
                         <ul className="flex space-x-8 text-[36px] lateef-regular font-regular text-white gap-20 !m-10">
-                            <li className="cursor-pointer hover:text-[#17CF96] !ml-130">HOME</li>
-                            <li className="cursor-pointer hover:text-[#17CF96]">SENSORS</li>
-                            <li className="cursor-pointer hover:text-[#17CF96]">DATA</li>
+                            <li className="cursor-pointer hover:text-[#17CF96] !ml-130">
+                                <Link to="/home">HOME</Link>
+                            </li>
+                            <li className="cursor-pointer hover:text-[#17CF96]">
+                                <Link to="/sensors">SENSORS</Link>
+                            </li>
+                            <li className="cursor-pointer hover:text-[#17CF96]">
+                                <Link to="/date">DATA</Link>
+                            </li>
                         </ul>
                         <button className="bg-[#17CF96] text-[36px] text-white rounded-full w-35 h-8 hover:bg-[#14b380] cursor-pointer flex items-center justify-center !mr-20">
-                            Sign up
+                            <Link to="/signup">Sign Up</Link>
                         </button>
                     </nav>
                 </header>
@@ -41,19 +49,20 @@ function Home() {
                         <h1 className="text-[250px] font-bold leading-none tracking-wide">
                             SMART CITY
                         </h1>
-                        <p className="text-[32px] max-w-2xl text-left ledger-regular">
+                        <p className="text-[32px] max-w-2xl text-left ledger-regular !mb-20">
                             Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry.
                         </p>
-                        <button className="mt-6 text-[32px] flex jusitfy-end items-end">
-                            Learn more
+                        <button className="absolute lateef-regular font-regular right-10 text-[32px] flex items-center space-x-2">
+                            <span>Lead more</span>
+                            <FaArrowDownLong className="text-[16px]" />
                         </button>
                     </div>
                 </section>
 
                 {/* Introduction Section */}
                 <section className="bg-white !ml-15 !mr-15 !mt-20">
-                    <Widgets    />
+                    <Widgets />
                     <div>
                         <h2 className="text-[28px] font-bold text-[#77625C] ledger-regular !ml-4 !mt-20">Advantages</h2>
                         <hr className="border-t border-[#000000] w-full" />

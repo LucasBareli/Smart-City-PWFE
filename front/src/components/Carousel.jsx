@@ -44,7 +44,7 @@ function Carousel() {
                     {visibleItems.map((item, index) => (
                         <div
                             key={item.id}
-                            className={`w-[calc(25%-10px)] h-[300px] bg-gray-200 rounded-lg shadow-md flex items-center justify-center ${
+                            className={`w-[calc(25%-10px)] h-[300px] bg-gray-200 rounded-lg shadow-md flex items-center justify-center cursor-pointer ${
                                 index === 0 ? "ml-4" : index === visibleItems.length - 1 ? "mr-4" : ""
                             }`}
                             onClick={() => handleSensorClick(item.id)} 
