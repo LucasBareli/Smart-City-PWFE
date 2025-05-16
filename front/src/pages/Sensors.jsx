@@ -1,95 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Sensor1 from "../assets/Sensor 1.png";
 import Sensor2 from "../assets/Sensor 2.png";
+import Sensor3 from "../assets/Sensor 3.png";
 import Header from "../components/Header";
 
 export default function Sensors() {
-  const images = [
-    { src: Sensor1, alt: "Temperature" },
-    { src: Sensor2, alt: "Humidity" },
-    { src: Sensor1, alt: "Luminosity" },
+  const allImages = [
+    { src: Sensor1, alt: "Temperature", label: "Temperature" },
+    { src: Sensor2, alt: "Humidity", label: "Humidity" },
+    { src: Sensor3, alt: "Luminosity", label: "Luminosity" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto slideshow logic for the first section
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % allImages.length);
     }, 3000);
-    return () => clearInterval(interval);
-  }, [images.length]);
 
-  const slideContent = [
-    "Detailed sensor information 1.",
-    "Detailed sensor information 2.",
-    "Detailed sensor information 3.",
-  ];
+    return () => clearInterval(interval); 
+  }, [allImages.length]);
 
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const handleNext = () => {
-    setSlideIndex((prev) => (prev + 1) % slideContent.length);
-  };
-
-  const handlePrevious = () => {
-    setSlideIndex((prev) => (prev - 1 + slideContent.length) % slideContent.length);
-  };
+  const bigImage = allImages[currentIndex]; 
 
   return (
     <>
-    <Header />
-    <div className="flex flex-col items-center space-y-8 !mt-50">
-      {/* First Section */}
-      <div className="w-full flex flex-col items-center space-y-4">
-        <div className="relative">
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image.src}
-              alt={image.alt}
-              className={`transition-all duration-700 rounded-lg w-96 h-96 object-cover ${
-                index === currentIndex ? "opacity-100" : "opacity-0 absolute"
-              }`}
-            />
-          ))}
+      <Header />
+      <div className="flex items-center justify-center !mt-30">
+        <div className="relative w-[430px] h-[650px] rounded-lg overflow-hidden">
+          <img
+            src={bigImage.src}
+            alt={bigImage.alt}
+            className="w-full h-full object-cover rounded-lg"
+          />
         </div>
 
-        <div className="flex space-x-4">
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image.src}
-              alt={image.alt}
-              className={`w-20 h-20 object-cover rounded-lg cursor-pointer ${
-                index === currentIndex ? "border-4 border-purple-500" : "border border-gray-300"
-              }`}
-              onClick={() => setCurrentIndex(index)}
-            />
-          ))}
-        </div>
-      </div>
+        <div className="flex flex-col justify-center">
+          <h2 className="text-[58px] font-semibold league-regular text-[#3C096C] leading-tight !ml-40 !mt-30">
+            Lorem Ipsum is <br /> simply dummy <br /> text of the
+          </h2>
+          <p className="text-black font-thin league-regular text-[22px] !ml-35">
+            Lorem Ipsum is simply dummy text of the printing and
+          </p>
 
-      {/* Second Section */}
-      <div className="w-full flex items-center justify-between space-x-4">
-        <button
-          onClick={handlePrevious}
-          className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        <div className="flex-1 text-center px-4">
-          <p className="text-lg font-medium">{slideContent[slideIndex]}</p>
+          <div className="flex space-x-8 gap-7 !ml-10">
+            {allImages.map(({ src, alt, label }, index) => (
+              <div
+                key={index}
+                className={"flex flex-col items-center space-y-1 !mt-30 cursor-pointer"}
+                onClick={() => setCurrentIndex(index)} 
+              >
+                <img
+                  src={src}
+                  alt={alt}
+                  className="w-40 h-40 rounded-lg object-cover"
+                />
+                <span className="text-[16px] !ml-15 text-black league-regular font-bold">
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
-        <button
-          onClick={handleNext}
-          className="p-2 bg-gray-200 rounded-full hover:bg-gray-300 transition"
-        >
-          <ChevronRight size={24} />
-        </button>
       </div>
-    </div>
     </>
   );
 }

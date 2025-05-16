@@ -13,7 +13,6 @@ function SignUp() {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     </p>
                     <form className="space-y-6 w-full max-w-md">
-                        {/* Campo de E-mail */}
                         <div>
                             <label
                                 className="block text-black text-[20px] league-regular font-thin !ml-10"
@@ -27,7 +26,6 @@ function SignUp() {
                                 className="w-85 !ml-10 px-4 py-3 border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
-                        {/* Campo de Senha */}
                         <div>
                             <label
                                 className="block text-black text-[20px] league-regular font-thin !ml-10"
@@ -67,7 +65,6 @@ function SignUp() {
                                 className="w-85 !ml-10 px-4 py-3 border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
-                        {/* Botão "Sign In" */}
                         <button
                             type="submit"
                             className="w-85 !mt-5 bg-[#17CF96] league-regular block text-white text-[24px] font-semibold py-3 rounded-lg hover:bg-[#13B983] hover:cursor-pointer transition !ml-10"
@@ -75,7 +72,7 @@ function SignUp() {
                             Sign up
                         </button>
                     </form>
-                    {/* Link "Sign In" */}
+
                     <p className="!mt-6 text-[20px] league-regular text-center text-black font-thin">
                         Do you have an account?{' '}
                         <a href="/" className="text-[#3C096C] text-[20px] league-regular hover:underline">
@@ -84,7 +81,6 @@ function SignUp() {
                     </p>
                 </div>
 
-                {/* Seção Direita - Imagem */}
                 <div className="hidden !m-7 lg:block w-1/2 relative">
                     <img
                         src={LoginImage}
