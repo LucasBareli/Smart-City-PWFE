@@ -40,8 +40,12 @@ const Footer = () => {
                 </nav>
 
                 <div className="flex gap-4 !mr-15">
-                    <FaLinkedin className="w-8 h-8 text-black cursor-pointer transition duration-300 hover:text-[#17CF96]" />
-                    <FaGithub className="w-8 h-8 text-black cursor-pointer transition duration-300 hover:text-[#17CF96]" />
+                    <a href="https://www.linkedin.com/in/lucas-bareli-384021293/" target="blank">
+                        <FaLinkedin className="w-8 h-8 text-black cursor-pointer transition duration-300 hover:text-[#17CF96]" />
+                    </a>
+                    <a href="https://github.com/LucasBareli" target="blank">
+                        <FaGithub className="w-8 h-8 text-black cursor-pointer transition duration-300 hover:text-[#17CF96]" />
+                    </a>
                     <FaInstagram className="w-8 h-8 text-black cursor-pointer transition duration-300 hover:text-[#17CF96]" />
                 </div>
             </div>

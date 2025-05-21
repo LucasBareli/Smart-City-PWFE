@@ -29,7 +29,7 @@ function Home() {
                                 <Link to="/sensors">SENSORS</Link>
                             </li>
                             <li className="cursor-pointer hover:text-[#17CF96]">
-                                <Link to="/date">DATA</Link>
+                                <Link to="/data ">DATA</Link>
                             </li>
                         </ul>
                         <button className="bg-[#17CF96] text-[36px] text-white rounded-full w-35 h-8 hover:bg-[#14b380] cursor-pointer flex items-center justify-center !mr-20">
