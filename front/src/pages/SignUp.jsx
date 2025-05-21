@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import LoginImage from '../assets/Login.png';
 
 function SignUp() {
+    const [formData, setFormData] = useState({
+        username: "",
+        password: "",
+        confirmPassword: ""
+    });
+
+    const [error, setError] = useState("");
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setFormData({ ...formData, [id]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+
+        if (formData.password !== formData.confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/api/signup", {
+                username: formData.username,
+                password: formData.password,
+            });
+
+            if (response.status === 201) {
+                alert("User created successfully!");
+                window.location.href = "/"; 
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Failed to create user. Please try again.");
+        }
+    };
+
     return (
         <div className="flex items-center justify-center h-screen bg-gray-50">
             <div className="flex w-full h-full bg-white lg:rounded-3xl">
@@ -12,59 +51,44 @@ function SignUp() {
                     <p className="text-black text-[20px] font-thin league-regular !mb-8 leading-relaxed max-w-90">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     </p>
-                    <form className="space-y-6 w-full max-w-md">
+                    <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
                         <div>
-                            <label
-                                className="block text-black text-[20px] league-regular font-thin !ml-10"
-                                htmlFor="name"
-                            >
-                                Name
+                            <label className="block text-black text-[20px] league-regular font-thin !ml-10" htmlFor="username">
+                                Username
                             </label>
                             <input
-                                id="name"
-                                type="name"
-                                className="w-85 !ml-10 px-4 py-3 border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
+                                id="username"
+                                type="text"
+                                value={formData.username}
+                                onChange={handleChange}
+                                className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
                         <div>
-                            <label
-                                className="block text-black text-[20px] league-regular font-thin !ml-10"
-                                htmlFor="e-mail"
-                            >
-                                E-mail
-                            </label>
-                            <input
-                                id="e-mail"
-                                type="e-mail"
-                                className="w-85 !ml-10 px-4 py-3 border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
-                            />
-                        </div>
-                        <div>
-                            <label
-                                className="block text-black text-[20px] league-regular font-thin !ml-10"
-                                htmlFor="password"
-                            >
+                            <label className="block text-black text-[20px] league-regular font-thin !ml-10" htmlFor="password">
                                 Password
                             </label>
                             <input
                                 id="password"
                                 type="password"
-                                className="w-85 !ml-10 px-4 py-3 border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
+                                value={formData.password}
+                                onChange={handleChange}
+                                className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
                         <div>
-                            <label
-                                className="block text-black text-[20px] league-regular font-thin !ml-10"
-                                htmlFor="confirm_password"
-                            >
+                            <label className="block text-black text-[20px] league-regular font-thin !ml-10" htmlFor="confirmPassword">
                                 Confirm Password
                             </label>
                             <input
-                                id="confirm_password"
-                                type="confirm_password"
-                                className="w-85 !ml-10 px-4 py-3 border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
+                                id="confirmPassword"
+                                type="password"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                                className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
+                        {error && <p className="text-red-500 text-center">{error}</p>}
                         <button
                             type="submit"
                             className="w-85 !mt-5 bg-[#17CF96] league-regular block text-white text-[24px] font-semibold py-3 rounded-lg hover:bg-[#13B983] hover:cursor-pointer transition !ml-10"

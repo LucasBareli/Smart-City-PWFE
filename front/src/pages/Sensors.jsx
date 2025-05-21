@@ -146,7 +146,7 @@ export default function Sensors() {
               ))}
             </tbody>
           </table>
-          <div className="flex justify-center items-center mt-4">
+          <div className="flex justify-center items-center !mt-4">
             <div className="flex justify-center space-x-2">
               {[1, 2, 3].map((page) => (
                 <button
