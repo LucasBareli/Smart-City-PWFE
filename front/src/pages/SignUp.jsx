@@ -33,7 +33,7 @@ function SignUp() {
 
             if (response.status === 201) {
                 alert("User created successfully!");
-                window.location.href = "/"; 
+                window.location.href = "/";
             }
         } catch (err) {
             console.error(err);
@@ -61,6 +61,7 @@ function SignUp() {
                                 type="text"
                                 value={formData.username}
                                 onChange={handleChange}
+                                placeholder="Enter your username"
                                 className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
@@ -73,6 +74,7 @@ function SignUp() {
                                 type="password"
                                 value={formData.password}
                                 onChange={handleChange}
+                                placeholder="Enter your password"
                                 className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
@@ -85,9 +87,11 @@ function SignUp() {
                                 type="password"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
+                                placeholder="Confirm your password"
                                 className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C] !mt-2"
                             />
                         </div>
+
                         {error && <p className="text-red-500 text-center">{error}</p>}
                         <button
                             type="submit"

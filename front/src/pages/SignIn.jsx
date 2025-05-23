@@ -9,7 +9,7 @@ function SignIn() {
   const navigate = useNavigate();
 
   const logar = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/token/", {
         username: user,
@@ -59,6 +59,7 @@ function SignIn() {
                 id="user"
                 type="text"
                 className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C]"
+                placeholder="Enter your username"
                 value={user}
                 onChange={(e) => setUser(e.target.value)}
               />
@@ -74,10 +75,12 @@ function SignIn() {
                 id="password"
                 type="password"
                 className="w-85 !ml-10 px-4 py-3 league-regular border border-[#3C096C] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3C096C]"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+
             <div className="text-right !mt-5">
               <a
                 href="#"
