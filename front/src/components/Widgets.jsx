@@ -24,7 +24,7 @@ const Widgets = () => {
                 <h2 className="text-[28px] font-bold text-[#77625C] ledger-regular !ml-4 w-40">Introduction</h2>
                 <hr className="border-t border-[#000000] w-full" />
                 <h3 className="text-[64px] league-regular text-[#3C096C] font-semibold w-160 !m-4">
-                    Lorem Ipsum is simply dummy text of the printing
+                    Learn more about what we offer
                 </h3>
                 <p className="league-regular font-thin text-[16px] flex justify-end !mb-5 text-[#77625C]">
                     Select the sensor if you want to see more *

@@ -49,9 +49,8 @@ function Home() {
                         <h1 className="text-[250px] font-bold leading-none tracking-wide">
                             SMART CITY
                         </h1>
-                        <p className="text-[32px] max-w-2xl text-left ledger-regular !mb-20">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
+                        <p className="text-[32px] max-w-[750px] text-left ledger-regular !mb-20">
+                            Welcome to the best Smart City from Senai Roberto Mange!!
                         </p>
                         <button className="absolute lateef-regular font-regular right-10 text-[32px] flex items-center space-x-2">
                             <span>Lead more</span>
@@ -66,8 +65,8 @@ function Home() {
                     <div>
                         <h2 className="text-[28px] font-bold text-[#77625C] ledger-regular !ml-4 !mt-20">Advantages</h2>
                         <hr className="border-t border-[#000000] w-full" />
-                        <h3 className="text-[64px] league-regular text-[#3C096C] font-semibold !mt-10">Lorem Ipsum is simply dummy text of the printing</h3>
-                        <p className="text-[24px] league-regular font-thin text-black ">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                        <h3 className="text-[64px] league-regular text-[#3C096C] font-semibold !mt-10">We enable connectivity</h3>
+                        <p className="text-[24px] league-regular font-thin text-black ">Smart city allows you to be aware of everything that is happening in real time and in a centralized way.</p>
                         <div className="relative">
                             <img
                                 src={CityLorem}
@@ -82,10 +81,10 @@ function Home() {
                                 />
                                 <div className="w-full text-left">
                                     <h4 className="league-regular text-[32px] text-[#3C096C] font-semibold !ml-7">
-                                        Lorem Ipsum
+                                        Real-time data
                                     </h4>
                                     <p className="league-regular text-[24px] !ml-7 font-thin w-85">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                                        Discover the data and use filters to select everything that is happening at SENAI Roberto Mange
                                     </p>
                                 </div>
                             </div>
