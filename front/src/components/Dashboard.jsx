@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [historicoData, setHistoricoData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
-  
+
   // Filtros
   const [selectedPeriod, setSelectedPeriod] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -33,41 +33,55 @@ const Dashboard = () => {
         setSensorData(
           response.data.map((sensor) => ({
             ...sensor,
-            humidity: Math.floor(Math.random() * 100),
+            humidity: Math.floor(Math.random() * 100), 
           }))
         );
       } catch (error) {
         console.error("Erro ao buscar dados dos sensores:", error);
       }
 
-      // Debugging para garantir que os filtros estão sendo passados
+      let params = {};
+
+      if (selectedPeriod) params.periodo = selectedPeriod;
+      if (selectedTime) params.tempo = selectedTime;
+      if (selectedEnvironment) params.search = selectedEnvironment;
+
       console.log("Filtros ativos:", { selectedPeriod, selectedTime, selectedEnvironment });
+      console.log("Parâmetros enviados para a API de históricos:", params);
 
       try {
-        const params = {
-          periodo: selectedPeriod,      // Passando o filtro de período
-          tempo: selectedTime,          // Passando o filtro de tempo
-          ambiente: selectedEnvironment, // Passando o filtro de ambiente
-        };
-
-        console.log("Parâmetros enviados para a API de históricos:", params);
-        
         const historicoResponse = await axios.get("http://127.0.0.1:8000/api/historicos", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          params: params,  // Passando os filtros para a API
+          params: params,
         });
 
         console.log("Historico Response:", historicoResponse.data);
-        setHistoricoData(historicoResponse.data);
+
+        const historicoMap = {};
+
+        historicoResponse.data.forEach((historico) => {
+          if (!historicoMap[historico.sensor]) {
+            historicoMap[historico.sensor] = historico.valor;
+          } else {
+            const existingTimestamp = new Date(historicoMap[historico.sensor].timestamp);
+            const newTimestamp = new Date(historico.timestamp);
+
+            if (newTimestamp > existingTimestamp) {
+              historicoMap[historico.sensor] = historico.valor;
+            }
+          }
+        });
+
+        setHistoricoData(historicoMap);
       } catch (error) {
         console.error("Erro ao buscar dados históricos:", error);
       }
     };
 
     fetchSensorData();
-  }, [selectedPeriod, selectedTime, selectedEnvironment]); // Recarregar os dados quando os filtros mudam
+  }, [selectedPeriod, selectedTime, selectedEnvironment]);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -84,7 +98,7 @@ const Dashboard = () => {
         <input
           type="text"
           placeholder="Search"
-          className="border rounded-lg px-3 py-2"
+          className="border rounded-lg px-3 py-2 league-regular"
         />
       </div>
 
@@ -96,8 +110,9 @@ const Dashboard = () => {
                 <h3 className="text-xl league-regular text-[32px] font-bold">Humidity Sensor</h3>
                 <p className="text-sm league-regular">ID: {sensor.id}</p>
                 <p className="text-sm league-regular">Mac Address: {sensor.mac_address}</p>
-                {/* Ajustar conforme a estrutura de histórico */}
-                <p className="text-sm text-black league-regular">R$ {historicoData.price}</p>
+                <p className="text-sm text-black league-regular">
+                  R$ {historicoData[sensor.id] || "Preço não disponível"}
+                </p>
               </div>
 
               <div className="w-1/3 !mr-10">

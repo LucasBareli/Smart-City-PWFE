@@ -31,7 +31,7 @@ const Widgets = () => {
                 </p>
             </div>
             <div className="grid grid-cols-12 gap-8 mt-10">
-                {/* Map */}
+                {/* Mapa */}
                 <div className="col-span-7">
                     <div className="w-full h-[500px] rounded-xl overflow-hidden">
                         <iframe
@@ -46,7 +46,6 @@ const Widgets = () => {
                     </div>
                 </div>
 
-                {/* Widgets */}
                 <div className="col-span-5 grid grid-cols-2 gap-4 !mt-6">
                     {Object.keys(sensorDescriptions).map((sensor, index) => (
                         <div
@@ -62,14 +61,12 @@ const Widgets = () => {
                                 <hr className="border-t border-[#3C096C] h-4 w-3/4 mb-4" />
                             </div>
 
-                            {/* Title of Sensor */}
                             <h4
                                 className={`text-[22px] league-regular ${activeCard === sensor ? "text-white" : "text-[#3C096C]"}`}
                             >
                                 {sensor}
                             </h4>
 
-                            {/* Icons */}
                             <div className="!mt-4">
                                 {sensor === "Counter" && (
                                     <MdOutlineSensors
@@ -93,7 +90,7 @@ const Widgets = () => {
                                 )}
                             </div>
 
-                            {/* Description */}
+                            {/* Descrição */}
                             {activeCard === sensor && (
                                 <p className="!m-4 text-[16px] league-regular font-thin">
                                     {visibleDescription === sensor

@@ -12,12 +12,9 @@ const Footer = () => {
 
             <div className="text-left !ml-40 !mt-10">
                 <div className="flex flex-row items-start gap-x-120">
-                    {/* Título */}
                     <h3 className="text-[96px] font-semibold league-regular text-black leading-none whitespace-nowrap !ml-30">
                         SMART <span className="text-[#17CF96] font-semibold league-regular">CITY</span>
                     </h3>
-
-                    {/* Contatos */}
                     <div className="flex flex-col justify-center">
                         <p className="text-black font-thin league-regular text-[24px]">Contacts</p>
                         <p className="text-black font-thin league-regular text-[24px]">+55 19 9999-9999</p>

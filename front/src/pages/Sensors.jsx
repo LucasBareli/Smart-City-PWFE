@@ -5,23 +5,62 @@ import Sensor3 from "../assets/Sensor 3.png";
 import CityCarrossel from "../assets/CityCarrossel.png"
 import Header from "../components/Header";
 import Footer from "../components/Footer"
-import { Check } from 'lucide-react';
-import { X } from 'lucide-react';
-import { Trash2 } from 'lucide-react';
-import { Pencil } from 'lucide-react';
+import SensorModal from "../components/SensorModal";
+import { Check, X, Trash2, Pencil } from 'lucide-react';
 import { CiCirclePlus } from "react-icons/ci";
 import { CgArrowDownR } from "react-icons/cg";
 
 export default function Sensors() {
   const allImages = [
-    { src: Sensor1, alt: "Temperature", label: "Temperature" },
-    { src: Sensor2, alt: "Humidity", label: "Humidity" },
-    { src: Sensor3, alt: "Luminosity", label: "Luminosity" },
+    { src: Sensor1, alt: "Temperature", label: "Temperature", title: "Efficient and Reliable Temperature Monitoring", text: "Tracks environmental temperature for optimized climate control and accurate data analysis." },
+    { src: Sensor2, alt: "Humidity", label: "Humidity",  title: "Precise and Adaptive Humidity Detection", text: "Monitors air moisture levels for enhanced climate management and efficient resource utilization." },
+    { src: Sensor3, alt: "Luminosity", label: "Luminosity",  title: "Advanced Light Intensity Measurement Tool", text: "Ensures optimal lighting efficiency in smart systems and adaptable environments." },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentIndex2, setCurrentIndex2] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [tableData, setTableData] = useState([
+    {
+      image: Sensor2,
+      model: "Humidity Sensor",
+      price: "R$5,99",
+      status: "Active",
+      macAddress: "1234-5678",
+    },
+    {
+      image: Sensor2,
+      model: "Humidity Sensor",
+      price: "R$5,99",
+      status: "Active",
+      macAddress: "1234-5678",
+    },
+    {
+      image: Sensor2,
+      model: "Humidity Sensor",
+      price: "R$5,99",
+      status: "Active",
+      macAddress: "1234-5678",
+    },
+    {
+      image: Sensor2,
+      model: "Humidity Sensor",
+      price: "R$5,99",
+      status: "Active",
+      macAddress: "1234-5678",
+    },
+    {
+      image: Sensor2,
+      model: "Humidity Sensor",
+      price: "R$5,99",
+      status: "Active",
+      macAddress: "1234-5678",
+    },
+  ]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingSensor, setEditingSensor] = useState(null); 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,47 +72,9 @@ export default function Sensors() {
 
   const bigImage = allImages[currentIndex];
 
-  const tableData = [
-    {
-      image: Sensor2,
-      model: "Humidity Sensor",
-      price: "R$5,99",
-      status: "Active",
-      macAddress: "1234-5678",
-    },
-    {
-      image: Sensor2,
-      model: "Humidity Sensor",
-      price: "R$5,99",
-      status: "Active",
-      macAddress: "1234-5678",
-    },
-    {
-      image: Sensor2,
-      model: "Humidity Sensor",
-      price: "R$5,99",
-      status: "Active",
-      macAddress: "1234-5678",
-    },
-    {
-      image: Sensor2,
-      model: "Humidity Sensor",
-      price: "R$5,99",
-      status: "Active",
-      macAddress: "1234-5678",
-    },
-    {
-      image: Sensor2,
-      model: "Humidity Sensor",
-      price: "R$5,99",
-      status: "Active",
-      macAddress: "1234-5678",
-    },
-  ];
-
   const carrosselData = [
     {
-      text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.",
+      text: "Smart cities use technology to improve urban life, making services efficient and sustainable.",
       image: CityCarrossel,
     },
     {
@@ -100,6 +101,32 @@ export default function Sensors() {
 
   const currentItem = carrosselData[currentIndex2];
 
+  // Ações no modal/tabela
+  function openNewModal() {
+    setEditingSensor(null);
+    setIsModalOpen(true);
+  }
+
+  function openEditModal(sensor) {
+    setEditingSensor(sensor);
+    setIsModalOpen(true);
+  }
+
+  function handleDelete(sensorToDelete) {
+    setTableData(tableData.filter((item) => item !== sensorToDelete));
+  }
+
+  function handleSave(sensor) {
+    if (editingSensor) {
+      // Editar
+      setTableData(tableData.map((item) => (item === editingSensor ? sensor : item)));
+    } else {
+      // Criar novo
+      setTableData([...tableData, sensor]);
+    }
+    setIsModalOpen(false);
+  }
+
   return (
     <>
       <Header />
@@ -113,14 +140,17 @@ export default function Sensors() {
                 <th className="px-4 py-2 font-medium">Price</th>
                 <th className="px-4 py-2 font-medium">Status</th>
                 <th className="px-4 py-2 font-medium">Mac-Address</th>
-                <th className="text-[#17CF96] cursor-pointer hover:text-[#17cf95a6]"><CiCirclePlus /></th>
+                <th
+                  className="text-[#17CF96] cursor-pointer hover:text-[#17cf95a6]"
+                  onClick={openNewModal}
+                >
+                  <CiCirclePlus />
+                </th>
               </tr>
             </thead>
             <tbody>
               {tableData.map((item, index) => (
-                <tr
-                  key={index}
-                >
+                <tr key={index}>
                   <td className="px-4 py-2">
                     <img
                       src={item.image}
@@ -139,8 +169,14 @@ export default function Sensors() {
                   </td>
                   <td className="px-4 py-2 text-black league-regular text-[24px] font-thin">{item.macAddress}</td>
                   <td className="px-4 py-2 flex items-center space-x-2">
-                    <Pencil className="text-[#528EE9] cursor-pointer hover:text-[#528ee9ab] !mt-15" />
-                    <Trash2 className="text-[#CF1800] cursor-pointer hover:text-[#cf1800a6] !mt-15" />
+                    <Pencil
+                      className="text-[#528EE9] cursor-pointer hover:text-[#528ee9ab] !mt-15"
+                      onClick={() => openEditModal(item)}
+                    />
+                    <Trash2
+                      className="text-[#CF1800] cursor-pointer hover:text-[#cf1800a6] !mt-15"
+                      onClick={() => handleDelete(item)}
+                    />
                   </td>
                 </tr>
               ))}
@@ -174,11 +210,11 @@ export default function Sensors() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h2 className="text-[58px] font-semibold league-regular text-[#3C096C] leading-tight !ml-40 !mt-30">
-              Lorem Ipsum is <br /> simply dummy <br /> text of the
+            <h2 className="text-[58px] font-semibold league-regular text-[#3C096C] leading-tight !ml-40 !mt-30 max-w-[650px]">
+              {bigImage.title}
             </h2>
-            <p className="text-black font-thin league-regular text-[22px] !ml-35">
-              Lorem Ipsum is simply dummy text of the printing and
+            <p className="text-black font-thin league-regular text-[22px] !ml-25 !mt-20 max-w-[900px]">
+              {bigImage.text}
             </p>
 
             <div className="flex space-x-8 gap-7 !ml-10">
@@ -201,7 +237,6 @@ export default function Sensors() {
             </div>
           </div>
         </div>
-
 
         {/* Carrossel2 */}
         <div className="flex flex-col items-center justify-center !mt-20 p-8 bg-[#F9F9F9] rounded-lg max-w-[1650px] relative">
@@ -238,6 +273,13 @@ export default function Sensors() {
         </div>
       </div>
       <Footer />
+
+      <SensorModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSave}
+        sensorData={editingSensor}
+      />
     </>
   );
 }

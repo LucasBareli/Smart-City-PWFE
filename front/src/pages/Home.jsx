@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Mange from '../assets/Mange.png';
 import Footer from "../components/Footer";
 import CityFooter from '../assets/CityFooter.png';
@@ -10,6 +10,17 @@ import { FaArrowDownLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 function Home() {
+    const [username, setUsername] = useState("");
+
+    useEffect(() => {
+        const storedUsername = localStorage.getItem("username");
+        if (storedUsername) {
+            setUsername(storedUsername);
+        }
+    }, []);
+
+    console.log(localStorage.getItem("username"));
+
     return (
         <>
             <div>
@@ -32,9 +43,9 @@ function Home() {
                                 <Link to="/data ">DATA</Link>
                             </li>
                         </ul>
-                        <button className="bg-[#17CF96] text-[36px] text-white rounded-full w-35 h-8 hover:bg-[#14b380] cursor-pointer flex items-center justify-center !mr-20">
-                            <Link to="/signup">Sign Up</Link>
-                        </button>
+                        <div className="bg-[#17CF96] text-[36px] text-white rounded-full w-40 h-9 flex items-center justify-center !mr-20">
+                            {username ? `Welcome ${username}` : <Link to="/signup">Sign Up</Link>}
+                        </div>
                     </nav>
                 </header>
 

@@ -15,13 +15,14 @@ function SignIn() {
         username: user,
         password: password,
       });
-      console.log("TokenLogin: ", response.data.access);
       localStorage.setItem("token", response.data.access);
+      localStorage.setItem("username", user);
       navigate("/home");
     } catch (error) {
       console.error("Login Error: ", error);
     }
   };
+
 
   const irParaCadastro = () => {
     navigate("/signup");
